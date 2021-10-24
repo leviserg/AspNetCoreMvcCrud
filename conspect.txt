@@ -1,0 +1,59 @@
+1. Create a project ASP.NET platform Windows, target Web 
+	{ASP.NET Core Web Application => Web Application (Model-View-Controller)}
+	Authentification : change : Individual User Accounts
+2. Make a changes in Views/Home/Index.cshtml as you want
+3. Add a class in Models folder e.g. Joke.cs
+	add properties 	(	prop + 2 x Tab key		)
+	add constructor (	ctor + 2 x Tab key		)
+4. Pick Contoller folder and run command Add / Controller
+		> MVC COntroller using Entity Framework
+		> Specify Joke model as a model + specify ApplicationDBContext
+		...
+		wait for a while to code generation
+		------
+		check the Data folder for Migrations, created Controller and Model classes, run project and go to localhost:.../{Jokes} you should see the database error
+5. Install from NuGet Package Management.
+	> Microsoft.AspNet.Identity.EntityFramework 
+	> EntityFramework
+	> 
+	Go to Package Management Console (used for install new dependecies) and run command
+	{ Tools / NuGet Package Manager / Package Manager Console }
+	PM
+	PM> add-migration "initialsetup"
+		{ xxxx_migration_name.cs will be created inside Migrations folder 
+		 to delete migration use PM> Remove-Migration
+		}
+	PM> update-database
+		Entity Framework will initialize ApplicationDBContext to create tables automatically
+		2 possible ways to deal with database:
+		- ADO.NET (Access Data Object) using manually created queries (but more complex and transparent)
+		- Entity Framework (Microsoft's ORM - Object Relationship Model ) using automatically created queries as  methods of model class (faster but for simpler queries)
+	Run Application and insert a couple of records and check with database
+6. Improving UI
+	- Opem file Views / Shared / _Layout.cshtml and add nav-link to Jokes page:
+		E.G. <li><a asp-area="" asp-controller="Jokes" asp-action="Index">Jokes</a></li>
+	- Add a link to new page and call new Method in Controller e.g. "ShowSearchForm"
+	- Add a new Method in Controller e.g. "ShowSearchForm"
+	        // GET: Jokes/ShowSearchForm
+			public async Task<IActionResult> ShowSearchForm()
+			{
+				return View();
+			}
+		Right Click on the method > Add > View > Empty > 
+			Template: "Create" (Model Class : Joke) + Create as Partial View
+			Modify created view to support search functionality (as in example) + set form action new in the controller (e.g. ShowSearchResults)
+			
+================== refresh database & migrations ==================
+1. Remove Database  with connections & backup
+2. Remove old migration file Data/Migrations/...
+3. Run commands from Package Management Console:
+	PM> EntityFrameworkCore\add-migration "initialsetup"
+	PM> EntityFrameworkCore\update-database
+	
+			
+			
+			
+		
+	
+		
+

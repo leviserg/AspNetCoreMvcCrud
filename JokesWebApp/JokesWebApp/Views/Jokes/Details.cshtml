@@ -1,0 +1,36 @@
+﻿@model JokesWebApp.Models.ModelExt
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Joke</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.JokeQuestion)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.JokeQuestion)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.JokeAnswer)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.JokeAnswer)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.UserName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.UserName)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.JokeId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
